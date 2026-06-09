@@ -1,11 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio</title>
+    <title>Eduardo Chacón | Desarrollador Back-End .NET</title>
+    <link rel="icon" type="image/png" href="Logotipo.png"> 
+    
+    <link rel="stylesheet" href="portafolio.css">
 </head>
+
 <body>
-<h1>Portafolio</h1>
+
+    <!-- Navegación Minimalista -->
+    <header class="navbar">
+        <div class="logo">EChZ<span>.</span></div>
+        <nav>
+            <a href="#about">Sobre Mí</a>
+            <a href="#projects">Proyectos</a>
+            <a href="#stack">Tecnologías</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Hola, soy <span class="text-primary">Eduardo Chacón</span></h1>
+                <h2>Desarrollador Back-End .NET & Cloud</h2>
+                <p>Especializado en el diseño de arquitecturas por capas, APIS robustas con C# y soluciones cloud. Capacidad analítica combinada con pasión por el código eficiente.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">Ver Proyectos</a>
+                    <a href="mailto:echaconz@ucenfotec.ac.cr" class="btn btn-secondary">Contacto</a>
+                </div>
+            </div>
+            <!-- Descomenta la línea de abajo si deseas usar tu foto de perfil (image_0b1da0.jpg) -->
+            <!-- <div class="hero-avatar"><img src="image_0b1da0.jpg" alt="Eduardo Chacón"></div> -->
+        </section>
+
+        <!-- Filtros de Proyectos -->
+        <section id="projects" class="projects-section">
+            <h3 class="section-title">Proyectos Destacados</h3>
+            
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="backend">Back-End / Cloud</button>
+                <button class="filter-btn" data-filter="frontend">Diseño / UI</button>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Proyecto 1: SGSF -->
+                <div class="project-card" data-category="backend">
+                    <div class="card-body">
+                        <span class="project-tag tag-backend">Back-End & Azure</span>
+                        <h4>Sistema de Gestión de Solicitudes Forestales</h4>
+                        <p>Plataforma web construida bajo una arquitectura por capas. Back-end robusto en C# conectado a una base de datos distribuida en Azure.</p>
+                        <div class="tech-stack">
+                            <span>C#</span><span>ASP.NET Web API</span><span>Azure SQL</span><span>JS Controller</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://sgsfgrupo3webapp-e7c9c7dxf5b8g9dr.chilecentral-01.azurewebsites.net/" target="_blank" class="link-live">⚡ Proyecto en Vivo</a>
+                            <a href="https://github.com/Edu4593" target="_blank" class="link-repo">📦 Código</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2: Colmar Solution -->
+                <div class="project-card" data-category="frontend">
+                    <div class="card-body">
+                        <span class="project-tag tag-frontend">Maquetación / UI</span>
+                        <h4>Colmar Academy Solution</h4>
+                        <p>Proyecto estático enfocado en demostrar un control riguroso de layouts, diseño responsivo, uso de HTML semántico y estilos estructurados en CSS.</p>
+                        <div class="tech-stack">
+                            <span>HTML5</span><span>CSS3</span><span>Responsive Design</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://edu4593.github.io/Colmar_solution/" target="_blank" class="link-live">⚡ Ver Sitio</a>
+                            <a href="https://github.com/Edu4593" target="_blank" class="link-repo">📦 Código</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Eduardo Chacón Zamora. Desarrollado con código limpio.</p>
+    </footer>
+
+    <script src="portafolio.js"></script>
 </body>
 </html>
