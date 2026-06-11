@@ -27,4 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    const btnContacto = document.getElementById('btnContacto');
+    const infoContacto = document.getElementById('infoContacto');
+
+    if (btnContacto && infoContacto) {
+        btnContacto.addEventListener('click', (e) => {
+            e.preventDefault(); // Evita que la página salte hacia arriba por el href="#"
+            infoContacto.classList.toggle('show'); // Alterna la clase para mostrar/ocultar
+        });
+    }
 });
