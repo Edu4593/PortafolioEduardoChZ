@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eduardo Chacón | Desarrollador Back-End .NET</title>
-    <link rel="icon" type="image/png" href="Logotipo.png"> 
+    <link rel="icon" type="image/png" href="recursos/imagenes/logo.png"> 
     
     <link rel="stylesheet" href="recursos/portafolio.css">
 </head>
@@ -13,7 +13,9 @@
 
     <!-- Navegación Minimalista -->
     <header class="navbar">
-        <div class="logo">EChZ<span>.</span></div>
+        <div class="logo">
+            <img src="recursos/imagenes/logo.png" alt="Logo de Eduardo Chacon" class="nav-logo">
+        </div>
         <nav>
             <a href="#about">Sobre Mí</a>
             <a href="#projects">Proyectos</a>
@@ -37,8 +39,9 @@
                 <p><strong>Teléfono:</strong> +506 8770-3249</p> <p><strong>LinkedIn:</strong> <a href="#" target="_blank">Tu Perfil</a></p>
                 </div>
             </div>
-            <!-- Descomenta la línea de abajo si deseas usar tu foto de perfil (image_0b1da0.jpg) -->
-            <!-- <div class="hero-avatar"><img src="image_0b1da0.jpg" alt="Eduardo Chacón"></div> -->
+            <div class="hero-presentation">
+                <img src="recursos/imagenes/echz_backend_presentation_bg.png" alt="Eduardo Chacón - Back-End Developer Banner">
+            </div>
         </section>
 
         <!-- Filtros de Proyectos -->
@@ -80,6 +83,50 @@
                         <div class="project-links">
                             <a href="https://edu4593.github.io/Colmar_solution/" target="_blank" class="link-live">⚡ Ver Sitio</a>
                             <a href="https://github.com/Edu4593" target="_blank" class="link-repo">📦 Código</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <section id="about" class="about-section">
+            <h3 class="section-title">Sobre Mí</h3>
+            
+            <div class="about-container">
+                <div class="about-text">
+                    <p>
+                        Soy estudiante de Bachillerato en Desarrollo de Software y profesional con formación en Farmacia, enfocado en el desarrollo de soluciones tecnológicas mediante el ecosistema Microsoft. Cuento con experiencia en la construcción de aplicaciones web multicapa utilizando <strong>C#, ASP.NET Web API, SQL Server y Azure</strong>, así como en el diseño de servicios REST y bases de datos orientadas a aplicaciones empresariales y de salud digital.
+                    </p>
+                    <p>
+                        He participado en proyectos full-stack donde he implementado arquitecturas multicapa, operaciones CRUD, integración con Microsoft SQL Server y despliegue de aplicaciones en la nube mediante Microsoft Azure. Además, poseo experiencia en control de versiones utilizando Git y GitHub, así como en metodologías ágiles Scrum para el trabajo colaborativo.
+                    </p>
+                    <p>
+                        Mi formación en Farmacia me proporciona una comprensión de los procesos y necesidades del sector salud, mientras que mi preparación en desarrollo de software me permite transformar esos requerimientos en soluciones tecnológicas seguras y escalables.
+                    </p>
+                </div>
+
+                <div class="about-corporate">
+                    <div class="tabs-nav">
+                        <button class="tab-btn active" data-tab="mision">Misión</button>
+                        <button class="tab-btn" data-tab="vision">Visión</button>
+                        <button class="tab-btn" data-tab="valores">Valores</button>
+                    </div>
+                    
+                    <div class="tabs-content">
+                        <div id="mision" class="tab-panel active">
+                            <p>Desarrollar soluciones de software eficientes, seguras y escalables mediante el uso de tecnologías .NET y buenas prácticas de programación, aplicando principios de código limpio y aprendizaje continuo para generar valor a las organizaciones y resolver problemas reales de manera efectiva.</p>
+                        </div>
+                        
+                        <div id="vision" class="tab-panel">
+                            <p>Ser un desarrollador backend altamente especializado en el ecosistema Microsoft, reconocido por la calidad, seguridad e innovación de mis soluciones tecnológicas. Aspiro a diseñar e implementar sistemas robustos y escalables que impulsen la transformación digital de organizaciones a nivel nacional e internacional.</p>
+                        </div>
+                        
+                        <div id="valores" class="tab-panel">
+                            <ul class="values-list">
+                                <li><strong>Responsabilidad:</strong> Siempre cumplo con los trabajos asignados en el tiempo establecido.</li>
+                                <li><strong>Integridad:</strong> Promuevo la integridad del software mediante código limpio, protección de datos y desarrollo responsable de soluciones web.</li>
+                                <li><strong>Innovación:</strong> Aplico las soluciones que mejor se adaptan a las necesidades del cliente.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>

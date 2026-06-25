@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
+    const tabs = document.querySelectorAll(".tab-btn");
+    const panels = document.querySelectorAll(".tab-panel");
 
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -37,4 +39,22 @@ document.addEventListener('DOMContentLoaded', () => {
             infoContacto.classList.toggle('show'); // Alterna la clase para mostrar/ocultar
         });
     }
+
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+            // Remover estado activo de todos los botones y paneles
+            tabs.forEach(t => t.classList.remove("active"));
+            panels.forEach(p => p.classList.remove("active"));
+
+            // Añadir estado activo al botón clickeado
+            tab.classList.add("active");
+            
+            // Mostrar el panel correspondiente
+            const targetPanel = document.getElementById(tab.dataset.tab);
+            if (targetPanel) {
+                targetPanel.classList.add("active");
+            }
+        });
+    });
 });
