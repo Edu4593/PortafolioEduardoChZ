@@ -5,29 +5,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const panels = document.querySelectorAll(".tab-panel");
 
     filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remover clase activa de todos los botones
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Añadir clase activa al botón presionado
-            button.classList.add('active');
+    button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
 
-            const filterValue = button.getAttribute('data-filter');
+        const filterValue = button.getAttribute('data-filter');
 
-            projectCards.forEach(card => {
-                if (filterValue === 'all') {
-                    card.style.display = 'block';
-                    setTimeout(() => card.style.opacity = '1', 50);
-                } else {
-                    if (card.getAttribute('data-category') === filterValue) {
-                        card.style.display = 'block';
-                        setTimeout(() => card.style.opacity = '1', 50);
-                    } else {
-                        card.style.opacity = '0';
-                        card.style.display = 'none';
-                    }
-                }
-            });
+        projectCards.forEach(card => {
+            const isMatch = filterValue === 'all' || card.getAttribute('data-category') === filterValue;
+            
+            if (isMatch) {
+                card.classList.remove('hide');
+                card.classList.add('show');
+            } else {
+                card.classList.remove('show');
+                card.classList.add('hide');
+            }
         });
+    });
     });
 
     const btnContacto = document.getElementById('btnContacto');
