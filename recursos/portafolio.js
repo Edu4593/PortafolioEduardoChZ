@@ -5,24 +5,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const panels = document.querySelectorAll(".tab-panel");
 
     filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
 
-        const filterValue = button.getAttribute('data-filter');
+            const filterValue = button.getAttribute('data-filter');
 
-        projectCards.forEach(card => {
-            const isMatch = filterValue === 'all' || card.getAttribute('data-category') === filterValue;
-            
-            if (isMatch) {
-                card.classList.remove('hide');
-                card.classList.add('show');
-            } else {
-                card.classList.remove('show');
-                card.classList.add('hide');
-            }
+            projectCards.forEach(card => {
+                const isMatch = filterValue === 'all' || card.getAttribute('data-category') === filterValue;
+
+                if (isMatch) {
+                    card.classList.remove('hide');
+                    card.classList.add('show');
+                } else {
+                    card.classList.remove('show');
+                    card.classList.add('hide');
+                }
+            });
         });
-    });
     });
 
     const btnContacto = document.getElementById('btnContacto');
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Añadir estado activo al botón clickeado
             tab.classList.add("active");
-            
+
             // Mostrar el panel correspondiente
             const targetPanel = document.getElementById(tab.dataset.tab);
             if (targetPanel) {
@@ -59,37 +59,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Evita recarga de página
+            e.preventDefault();
 
-            const data = new FormData(contactForm);
             formStatus.textContent = 'Enviando mensaje...';
             formStatus.className = 'form-status';
+
+            // Convertimos los campos del formulario a un objeto JSON
+            const data = new FormData(contactForm);
+            const payload = Object.fromEntries(data.entries());
 
             try {
                 const response = await fetch(contactForm.action, {
                     method: contactForm.method,
-                    body: data,
+                    body: JSON.stringify(payload),
                     headers: {
+                        'Content-Type': 'application/json',
                         'Accept': 'application/json'
                     }
                 });
 
                 if (response.ok) {
                     formStatus.textContent = '¡Gracias! Tu mensaje ha sido enviado exitosamente.';
-                    formStatus.classList.add('success');
+                    formStatus.className = 'form-status success';
                     contactForm.reset();
                 } else {
-                    const responseData = await response.json();
-                    if (responseData.hasOwnProperty('errors')) {
-                        formStatus.textContent = responseData["errors"].map(error => error["message"]).join(", ");
+                    const responseData = await response.json().catch(() => null);
+                    if (responseData && responseData.errors) {
+                        formStatus.textContent = responseData.errors.map(err => err.message).join(', ');
                     } else {
                         formStatus.textContent = 'Ocurrió un error al enviar el mensaje. Inténtalo de nuevo.';
                     }
-                    formStatus.classList.add('error');
+                    formStatus.className = 'form-status error';
                 }
             } catch (error) {
+                console.error('Error de envío:', error);
                 formStatus.textContent = 'Error de conexión. Inténtalo más tarde.';
-                formStatus.classList.add('error');
+                formStatus.className = 'form-status error';
             }
         });
     }
@@ -103,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "nav-stack": "Tecnologías",
             "nav-contact": "Contacto",
             "nav-home": "Inicio",
-            
+
             // Hero
             "hero-greeting": "Hola, soy",
             "hero-role": "Desarrollador Back-End .NET & Cloud",
@@ -113,9 +118,10 @@ document.addEventListener('DOMContentLoaded', () => {
             "lbl-phone": "Teléfono:",
             "view-profile": "Ver perfil",
             "btn-cv": "📄 Descargar mi CV (PDF)",
-            
+
             // Projects
             "title-projects": "Proyectos Destacados",
+            "desc-projects": "Una selección de los trabajos más relevantes en los que he trabajado, aplicando buenas prácticas de desarrollo.",
             "filter-all": "Todos",
             "filter-backend": "Back-End / Cloud",
             "filter-frontend": "Diseño / UI",
@@ -136,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "tab-vision": "Visión",
             "tab-values": "Valores",
             "mission-text": "Desarrollar soluciones de software eficientes, seguras y escalables mediante el uso de tecnologías .NET y buenas prácticas de programación, aplicando principios de código limpio y aprendizaje continuo para generar valor a las organizaciones y resolver problemas reales de manera efectiva.",
-            "vision-text": "Ser un desarrollador backend altamente especializado en el ecosistema Microsoft, reconocido por la calidad, seguridad e innovación de mis soluciones tecnológicas. Aspiro a diseñar e implementar sistemas robustos y escalables que impulsen la transformación digital de organizaciones a nivel nacional e internacional.",
+            "vision-text": "Ser un desarrollador backend highly especializado en el ecosistema Microsoft, reconocido por la calidad, seguridad e innovación de mis soluciones tecnológicas. Aspiro a diseñar e implementar sistemas robustos y escalables que impulsen la transformación digital de organizaciones a nivel nacional e internacional.",
             "val-resp-title": "Responsabilidad:",
             "val-resp-text": "Siempre cumplo con los trabajos asignados en el tiempo establecido.",
             "val-int-title": "Integridad:",
@@ -146,13 +152,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Stack
             "title-stack": "Tecnologías",
+            "desc-stack": "Herramientas, lenguajes y frameworks con los que trabajo en mi día a día para construir aplicaciones modernas, escalables y eficientes.",
             "stack-backend": "Backend & Cloud",
             "stack-languages": "Lenguajes & Frontend",
             "stack-tools": "Herramientas & Metodología",
 
             // Contact
             "title-contact": "Contacto",
-            "contact-subtitle": "¿Tienes un proyecto en mente o deseas discutir una oportunidad laboral? Puedes enviarme un mensaje directo o escribirme por WhatsApp.",
+            "contact-subtitle": "¿Deseas discutir una oportunidad laboral? Puedes enviarme un mensaje directo o escribirme por WhatsApp.",
             "card-direct": "Canales Directos",
             "card-whatsapp-text": "Si prefieres una respuesta inmediata, hablemos directamente por WhatsApp:",
             "btn-whatsapp": "Escribir por WhatsApp",
@@ -168,7 +175,8 @@ document.addEventListener('DOMContentLoaded', () => {
             "btn-submit": "Enviar Mensaje",
 
             // Footer
-            "footer-text": "© 2026 Eduardo Chacón Zamora. Construyendo soluciones robustas con código limpio y eficiente."
+            "footer-extra-line": "© 2026 Eduardo Chacón Zamora.",
+            "footer-text": "Construyendo soluciones robustas con código limpio y eficiente."
         },
         en: {
             // Navbar
@@ -177,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "nav-stack": "Tech Stack",
             "nav-contact": "Contact",
             "nav-home": "Home",
-            
+
             // Hero
             "hero-greeting": "Hi, I'm",
             "hero-role": ".NET Back-End & Cloud Developer",
@@ -190,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Projects
             "title-projects": "Featured Projects",
+            "desc-projects": "A selection of the most relevant projects I have worked on, applying software development best practices.",
             "filter-all": "All",
             "filter-backend": "Back-End / Cloud",
             "filter-frontend": "Design / UI",
@@ -220,13 +229,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Stack
             "title-stack": "Technologies",
+            "desc-stack": "Tools, languages, and frameworks I use daily to build modern, scalable, and efficient applications.",
             "stack-backend": "Backend & Cloud",
             "stack-languages": "Languages & Frontend",
             "stack-tools": "Tools & Methodology",
 
             // Contact
             "title-contact": "Contact",
-            "contact-subtitle": "Have a project in mind or wish to discuss a job opportunity? You can send me a direct message or reach out via WhatsApp.",
+            "contact-subtitle": "Wish to discuss a job opportunity? You can send me a direct message or reach out via WhatsApp.",
             "card-direct": "Direct Channels",
             "card-whatsapp-text": "If you prefer an immediate response, let's chat directly via WhatsApp:",
             "btn-whatsapp": "Chat on WhatsApp",
@@ -242,7 +252,8 @@ document.addEventListener('DOMContentLoaded', () => {
             "btn-submit": "Send Message",
 
             // Footer
-            "footer-text": "© 2026 Eduardo Chacón Zamora. Building robust solutions with clean, efficient code."
+            "footer-extra-line": "© 2026 Eduardo Chacón Zamora.",
+            "footer-text": "Building robust solutions with clean, efficient code."
         }
     };
 
